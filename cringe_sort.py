@@ -9,6 +9,12 @@ def cringe_sort(input_list):
         raise TypeError("Input must be a list.")
     if not all(isinstance(x, (int, float)) for x in input_list):
         raise TypeError("List elements must be numbers.")
+
+    # Check if the list is already sorted
+    if all(input_list[i] <= input_list[i + 1] for i in range(len(input_list) - 1)):
+        print("The list is already sorted! 😮 No need for cringe sort.")
+        return input_list
+
     attempt_count = 0
     while True:
         attempt_count += 1
@@ -16,7 +22,10 @@ def cringe_sort(input_list):
         shuffled_list = random.sample(input_list, len(input_list))
         # Check if the list is sorted
         if all(shuffled_list[i] <= shuffled_list[i + 1] for i in range(len(shuffled_list) - 1)):
-            return shuffled_list
+            print(f"\nSuccess! The list is finally sorted (after many, many tries): {shuffled_list}")
+            print("It was a close call, but we did it! 🥳")
+            print("----------------------------------------------------") # Separator between attempts
+            return shuffled_list # Return only after sorting
         else:
             print(f"Attempt #{attempt_count}: {shuffled_list}")
             time.sleep(0.5) # Pause for a bit of dramatic effect
@@ -46,9 +55,6 @@ if __name__ == "__main__":
             break # User chose to exit
 
         # Perform cringe sort
-        sorted_list = cringe_sort(my_list)
-        print(f"\nSuccess! The list is finally sorted (after many, many tries): {sorted_list}")
-        print("It was a close call, but we did it! 🥳")
-        print("----------------------------------------------------") # Separator between attempts
-
-    print("Thanks for using Cringe Sort! ❤️")
+        sorted_list = cringe_sort(my_list) 
+        
+    print("Thanks for using Cringe Sort! ✌️")
